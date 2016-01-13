@@ -24,7 +24,7 @@ void readFile(string& inputLines){
 //  "sum" is for summing up all numeric atoms.
 string getNextToken(int& index, string inputLines, string& error, vector<string>& atoms, int& sum){ 
 	// current position "index" is same as the ending of input string. Either string is empty or reached the end of  string.
-	if((inputLines.length())==index){
+	if((inputLines.length())==(unsigned)index){
 		return "EOF";
 	}
 	// 32 is space. Simply move index forward by index++
@@ -59,7 +59,7 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 		while(((inputLines[index]+1)>=65 && (inputLines[index]+1)<=90) || ((inputLines[index]+1)>=48 && (inputLines[index]+1)<=57) )
 			number+=inputLines[index++];
 		// if the string contains letter in it, it's invalid and therefore become an error
-		for(int i =0;i<number.length();i++){
+		for(unsigned int i =0;i<number.length();i++){
 			if (number[i] >=65 && number[i] <=90)
 				valid = false;
 			if(!valid) break;
@@ -87,7 +87,7 @@ int main( int argc, char *argv[] ){
 /*VARIABLES*/
 	string error, token, inputLines, outputLines;
 	vector<string> atoms;
-	unsigned int  literalAtom=0, numericAtom=0, openPar=0, closingPar=0, sum=0, index=0;
+	int  literalAtom=0, numericAtom=0, openPar=0, closingPar=0, sum=0, index=0;
 
 /*READCIN*/
 	//read file via cin and store into string called inputLines
@@ -124,7 +124,7 @@ int main( int argc, char *argv[] ){
 			cout << "0" << endl;
 		else {
 			cout << literalAtom << ", ";
-			for (int i =0; i<=atoms.size()-1; ++i)
+			for (unsigned int i =0; i<=atoms.size()-1; ++i)
 			{
 				cout << atoms[i];
 				if((i+1)!=atoms.size()) 
