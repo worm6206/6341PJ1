@@ -7,7 +7,7 @@
 CXX = g++
 
 # C++ compiler flags
-CXXFLAGS = -g -Wall
+CXXFLAGS = -g -Wall -std=c++0x
 
 # Creating a .o file
 COMPILE = $(CXX) $(CXXFLAGS) -c
