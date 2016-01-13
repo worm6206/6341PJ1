@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -20,9 +21,9 @@ void readFile(string& inputLines){
 // "inputLines" is the string this function is reading
 // "error" is for error message. Stays empty unless error occurs.
 //  "atoms" is a string vector storing all literal atoms.
-//  "sum" is for summing up all numberic atoms.
+//  "sum" is for summing up all numeric atoms.
 string getNextToken(int& index, string inputLines, string& error, vector<string>& atoms, int& sum){ 
-	// current position "index" is same as the ending of input string. Either fstringis empty or reached the end of  string.
+	// current position "index" is same as the ending of input string. Either string is empty or reached the end of  string.
 	if((inputLines.length())==index){
 		return "EOF";
 	}
@@ -40,7 +41,7 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 		index++;
 		return "ClosingParenthesis";
 	}
-	// occurs if the first character is capital ascii
+	// occurs if the first character is capital ASCII
 	else if((inputLines[index]>=65) && (inputLines[index]<=90)){
 		string word;
 		// if the next character is number or capital letter, assemble them into a string "word"
@@ -74,7 +75,9 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 	// (OPTIONAL, not in requirement) 
 	// if there are anything other character rather than capital letters, number letters, space, and parenthesis, it's an error
 	else{
-		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + to_string(index+1);
+		stringstream convert;
+		convert << index+1;
+		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + convert.str();
 		return "ERROR";
 	}
 }
@@ -137,7 +140,7 @@ int main( int argc, char *argv[] ){
 			cout << numericAtom << ", " << sum << endl;
 		cout << "OPEN PARENTHESES: " << openPar << endl;
 		cout  << "CLOSING PARENTHESES: " << closingPar << endl;
-		// not sure about printing the last endl, since generates one empty line in file outputfile
+		// not sure about printing the last endl, since generates one empty line in file output file
 		// but in terminal we need it else the format would be weird.
 	}
 }
