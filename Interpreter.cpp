@@ -87,7 +87,7 @@ int main( int argc, char *argv[] ){
 /*VARIABLES*/
 	string error, token, inputLines, outputLines;
 	vector<string> atoms;
-	int  literalAtom=0, numericAtom=0, openPar=0, closingPar=0, sum=0, index=0;
+	unsigned int  literalAtom=0, numericAtom=0, openPar=0, closingPar=0, sum=0, index=0;
 
 /*READCIN*/
 	//read file via cin and store into string called inputLines
