@@ -27,5 +27,8 @@ $(EXE) : $(OBJS) # depends on all object files
 
 # An object file is dependent on the corresponding source file
 
-%.o : %.cc
+%.o : %.cpp
 	$(COMPILE) -o $@ $<
+
+clean:
+	rm -f Interpreter.o Interpreter
