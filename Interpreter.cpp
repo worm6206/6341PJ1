@@ -43,21 +43,25 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 	}
 	// occurs if the first character is capital ASCII
 	else if((inputLines[index]>=65) && (inputLines[index]<=90)){
-		string word;
+		string word = string(1,inputLines[index]);
+		int temp = index;
 		// if the next character is number or capital letter, assemble them into a string "word"
 		// if not, store what we've obtained so far and push "word" into "atoms" the vector
-		while( ((inputLines[index]+1)>=65 && (inputLines[index]+1)<=90) || ((inputLines[index]+1)>=48 && (inputLines[index]+1)<=57) )
-			word+=inputLines[index++];
+		while( ((inputLines[++temp])>=65 && (inputLines[temp])<=90) || ((inputLines[temp])>=48 && (inputLines[temp])<=57) )
+			word+=inputLines[temp];
+		index=temp;
 		atoms.push_back(word);
 		return "LiteralAtom";
 	}
 	// occurs if the starting character is a number letter
 	else if((inputLines[index]>=48) && (inputLines[index]<=57)){
-		string number;
+		string number = string(1,inputLines[index]);
 		bool valid = true;
+		int temp = index;
 		// doesn't care if the next character is letter or number, just assemble them as a string
-		while(((inputLines[index]+1)>=65 && (inputLines[index]+1)<=90) || ((inputLines[index]+1)>=48 && (inputLines[index]+1)<=57) )
-			number+=inputLines[index++];
+		while(((inputLines[++temp])>=65 && (inputLines[temp])<=90) || ((inputLines[temp])>=48 && (inputLines[temp])<=57) )
+			number+=inputLines[temp];
+		index = temp;
 		// if the string contains letter in it, it's invalid and therefore become an error
 		for(unsigned int i =0;i<number.length();i++){
 			if (number[i] >=65 && number[i] <=90)
@@ -77,7 +81,7 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 	else{
 		stringstream convert;
 		convert << index+1;
-		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + convert.str();
+		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + convert.str() +" inputlength=" + to_string(inputLines.length()) + " index=" + to_string(index) ;
 		return "ERROR";
 	}
 }
