@@ -81,7 +81,7 @@ string getNextToken(int& index, string inputLines, string& error, vector<string>
 	else{
 		stringstream convert;
 		convert << index+1;
-		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + convert.str() +" inputlength=" + to_string(inputLines.length()) + " index=" + to_string(index) ;
+		error="unrecognized character \"" + string(1,inputLines[index]) + "\" at " + convert.str();
 		return "ERROR";
 	}
 }
